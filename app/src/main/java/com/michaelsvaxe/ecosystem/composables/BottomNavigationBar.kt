@@ -16,8 +16,8 @@ import com.michaelsvaxe.ecosystem.navigation.NavItem
 fun BottomNavigationBar(
     navController: NavHostController
 ) {
-    val navItems = listOf(NavItem.Home, NavItem.History, NavItem.About)
-    var selectedItem by rememberSaveable { mutableIntStateOf(0) }
+    val navItems = listOf(NavItem.About, NavItem.Home, NavItem.History)
+    var selectedItem by rememberSaveable { mutableIntStateOf(1) }
 
     NavigationBar {
         navItems.forEachIndexed { index, item ->

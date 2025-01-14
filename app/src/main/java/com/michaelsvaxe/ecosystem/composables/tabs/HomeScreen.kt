@@ -1,19 +1,26 @@
 package com.michaelsvaxe.ecosystem.composables.tabs
 
+import android.graphics.Paint.Align
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,6 +38,7 @@ fun HomeScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .background(color = Color.White)
     ) {
         Column(
             modifier = Modifier
@@ -81,12 +89,21 @@ fun HomeScreen() {
                     .padding(6.dp)
             )
             Card(
-                elevation = CardDefaults.elevatedCardElevation(5.dp),
+                elevation = CardDefaults.elevatedCardElevation(2.dp),
+                colors = CardColors(Color.White, Color.Black, Color.White, Color.Blue),
                 modifier = Modifier
                     .padding(6.dp)
             ) {
                 BankInfoScreen()
             }
+            Text(
+                text = "Version 0.1.3",
+                fontSize = 16.sp,
+                color = Color.Gray,
+                modifier = Modifier
+                    .padding(6.dp)
+            )
+
         }
     }
 }
@@ -97,7 +114,8 @@ fun BankInfoScreen() {
     Box(
         modifier = Modifier
             .padding(start = 6.dp, end = 6.dp, top = 6.dp, bottom = 20.dp)
-            .fillMaxSize()
+            .fillMaxWidth()
+            .height(IntrinsicSize.Max)
     ) {
         Column(
             modifier = Modifier
@@ -160,6 +178,7 @@ fun BankInfoScreen() {
             }
             Text(
                 text = stringResource(R.string.card_number),
+                fontWeight = FontWeight.Light,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
             )
@@ -167,11 +186,13 @@ fun BankInfoScreen() {
                 horizontalArrangement = Arrangement.SpaceAround,
                 modifier = Modifier
                     .padding(bottom = 6.dp)
+                    .fillMaxWidth()
             ) {
                 Column {
                     Text(
                         text = stringResource(R.string.length),
-                        fontWeight = FontWeight.Thin)
+                        fontWeight = FontWeight.Thin
+                    )
                     Text(
                         text = "?",
                         fontWeight = FontWeight.Bold
@@ -190,6 +211,7 @@ fun BankInfoScreen() {
             }
             Text(
                 text = stringResource(R.string.bank),
+                fontWeight = FontWeight.Light,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
             )
@@ -197,6 +219,7 @@ fun BankInfoScreen() {
                 horizontalArrangement = Arrangement.SpaceAround,
                 modifier = Modifier
                     .padding(bottom = 6.dp)
+                    .fillMaxWidth()
             ) {
                 Column {
                     Text(
@@ -211,7 +234,8 @@ fun BankInfoScreen() {
                 Column {
                     Text(
                         text = stringResource(R.string.bank_phone),
-                        fontWeight = FontWeight.Thin)
+                        fontWeight = FontWeight.Thin
+                    )
                     Text(
                         text = "+7 812 000 00 00",
                         fontWeight = FontWeight.Bold
@@ -220,11 +244,14 @@ fun BankInfoScreen() {
             }
             Text(
                 text = stringResource(R.string.country),
+                fontWeight = FontWeight.Light,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
             )
             Row(
-                horizontalArrangement = Arrangement.SpaceAround
+                horizontalArrangement = Arrangement.SpaceAround,
+                modifier = Modifier
+                    .fillMaxWidth(),
             ) {
                 Column {
                     Text(
@@ -243,7 +270,8 @@ fun BankInfoScreen() {
                     )
                     Text(
                         text = "30",
-                        fontWeight = FontWeight.Bold)
+                        fontWeight = FontWeight.Bold
+                    )
                 }
             }
         }

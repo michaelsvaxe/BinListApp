@@ -14,8 +14,8 @@ fun NavigationScreens(
     navController: NavHostController
 ) {
     NavHost(navController, startDestination = NavItem.Home.path) {
-        composable(NavItem.Home.path) { HomeScreen() }
         composable(NavItem.About.path) { AboutScreen() }
+        composable(NavItem.Home.path) { HomeScreen() }
         composable(NavItem.History.path) { HistoryScreen() }
     }
 }
