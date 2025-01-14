@@ -1,3 +1,37 @@
 <resources>
-    <string name="app_name">EcoSystem</string>
+    <!-- Main Screen -->
+    <string name="app_name">BIN list</string>
+    <string name="bank_info_screen_title">Browse bank info by BIN\nof your credit card</string>
+    <string name="bank_info_screen_explain">To see the bank card information, enter the first 6 to 8 digits of a card number (BIN/IIN) in the field above.</string>
+    <string name="text_field_label">Card Number</string>
+    <string name="btn_main">Lookup</string>
+
+    <!-- Card Info -->
+    <string name="scheme">SCHEME/NETWORK</string>
+    <string name="type">TYPE</string>
+    <string name="brand">BRAND</string>
+    <string name="prepaid">PREPAID</string>
+
+    <string name="card_number">CARD NUMBER</string>
+    <string name="length">LENGTH</string>
+    <string name="luhn">LUHN</string>
+
+    <string name="bank">BANK</string>
+    <string name="bank_website">Website</string>
+    <string name="bank_phone">Phone</string>
+
+    <string name="country">COUNTRY</string>
+    <string name="latitude">latitude</string>
+    <string name="longitude">longitude</string>
+
+    <!-- About -->
+    <string name="about_title">About</string>
+    <string name="about_text">binlist.net is a public web service for looking up credit and debit card meta data. </string>
+    <string name="bin_title">IIN / BIN</string>
+    <string name="bin_text">The first 6 or 8 digits of a payment card number (credit cards, debit cards, etc.) are known as the Issuer Identification Numbers (IIN), previously known as Bank Identification Number (BIN). These identify the institution that issued the card to the card holder. </string>
+    <string name="data_title">Data</string>
+    <string name="data_text">nbinlist.net is a public web service for looking up credit and debit card meta data.\nIIN / BIN\nThe first 6 or 8 digits of a payment card number (credit cards, debit cards, etc.) are known as the Issuer Identification Numbers (IIN), previously known as Bank Identification Number (BIN). These </string>
+
+    <!-- History -->
+    <string name="history">History</string>
 </resources>

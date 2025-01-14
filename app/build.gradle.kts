@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.michaelsvaxe.ecosystem"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.michaelsvaxe.ecosystem"
@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
