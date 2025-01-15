@@ -12,7 +12,8 @@ import androidx.navigation.NavHostController
 fun MainScreen(
     navController: NavHostController,
     cardNumber: State<String>,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
+    onClick: () -> Unit
 ) {
     Scaffold(
         bottomBar = {
@@ -21,6 +22,6 @@ fun MainScreen(
             }
         }
     ) {
-        NavigationScreens(navController, cardNumber, onValueChange)
+        NavigationScreens(navController, cardNumber, onValueChange, onClick)
     }
 }

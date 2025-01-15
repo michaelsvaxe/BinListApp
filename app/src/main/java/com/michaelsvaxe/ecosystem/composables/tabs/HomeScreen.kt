@@ -31,12 +31,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.michaelsvaxe.ecosystem.R
+import com.michaelsvaxe.ecosystem.model.CardInfo
 import com.michaelsvaxe.ecosystem.ui.theme.BlueButton
 
 @Composable
 fun HomeScreen(
     cardNumber: State<String>,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
+    onClick: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -73,7 +75,7 @@ fun HomeScreen(
                         .padding(12.dp)
                 )
                 Button(
-                    onClick = { },
+                    onClick = onClick,
                     shape = ShapeDefaults.ExtraSmall,
                     colors = ButtonColors(BlueButton, Color.White, Color.Red, Color.White),
                     modifier = Modifier
@@ -104,7 +106,7 @@ fun HomeScreen(
                     .fillMaxHeight()
             )
             Text(
-                text = "Version 0.1.4",
+                text = "Version 0.2.1",
                 fontSize = 16.sp,
                 color = Color.Gray,
                 modifier = Modifier
@@ -118,6 +120,7 @@ fun HomeScreen(
 
 @Composable
 fun BankInfoScreen() {
+    val cardInfo = CardInfo()
     Box(
         modifier = Modifier
             .padding(start = 6.dp, end = 6.dp, top = 6.dp, bottom = 20.dp)
@@ -141,7 +144,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = "Mir",
+                        text = cardInfo.scheme.toString(),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -151,7 +154,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = "Debit",
+                        text = cardInfo.type.toString(),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -168,7 +171,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = "Gold",
+                        text = cardInfo.brand.toString(),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -178,7 +181,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = "Yes/No",
+                        text = if (cardInfo.prepaid == true) "Yes" else "No",
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -211,7 +214,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = "Yes",
+                        text = if (cardInfo.luhn == true) "Yes" else "No",
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -234,7 +237,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = "www.sberbank.ru",
+                        text = "?",
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -244,7 +247,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = "+7 812 000 00 00",
+                        text = "?",
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -266,7 +269,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = "60",
+                        text = cardInfo.longitude.toString(),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -276,7 +279,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = "30",
+                        text = cardInfo.latitude.toString(),
                         fontWeight = FontWeight.Bold
                     )
                 }

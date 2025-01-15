@@ -14,11 +14,12 @@ import com.michaelsvaxe.ecosystem.composables.tabs.HomeScreen
 fun NavigationScreens(
     navController: NavHostController,
     cardNumber: State<String>,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
+    onClick: () -> Unit
 ) {
     NavHost(navController, startDestination = NavItem.Home.path) {
         composable(NavItem.About.path) { AboutScreen() }
-        composable(NavItem.Home.path) { HomeScreen(cardNumber, onValueChange) }
+        composable(NavItem.Home.path) { HomeScreen(cardNumber, onValueChange, onClick) }
         composable(NavItem.History.path) { HistoryScreen() }
     }
 }
