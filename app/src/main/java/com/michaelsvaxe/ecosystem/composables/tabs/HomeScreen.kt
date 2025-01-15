@@ -104,7 +104,7 @@ fun HomeScreen(
                     .fillMaxHeight()
             )
             Text(
-                text = "Version 0.1.3",
+                text = "Version 0.1.4",
                 fontSize = 16.sp,
                 color = Color.Gray,
                 modifier = Modifier
