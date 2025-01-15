@@ -8,7 +8,7 @@ data class CardInfo(
     var length: Byte,
     var luhn: Boolean,
     var countryName: String,
-    var countryFlag: Int,
+    var countryEmoji: String,
     var latitude: Short,
     var longitude: Short,
     var bankName: String,

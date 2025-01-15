@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.michaelsvaxe.ecosystem.composables.MainScreen
@@ -15,11 +16,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val cardNumber = mutableStateOf("0000 0000 0000 0000")
+
         setContent {
             EcoSystemTheme {
                 val navController = rememberNavController()
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    MainScreen(navController = navController)
+                    MainScreen(navController, cardNumber, onValueChange = { cardNumber.value = it })
                 }
             }
         }

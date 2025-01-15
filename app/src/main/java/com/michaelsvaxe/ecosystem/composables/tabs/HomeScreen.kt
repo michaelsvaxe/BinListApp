@@ -1,12 +1,13 @@
 package com.michaelsvaxe.ecosystem.composables.tabs
 
-import android.graphics.Paint.Align
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,9 +20,8 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,7 +34,10 @@ import com.michaelsvaxe.ecosystem.R
 import com.michaelsvaxe.ecosystem.ui.theme.BlueButton
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    cardNumber: State<String>,
+    onValueChange: (String) -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -59,8 +62,8 @@ fun HomeScreen() {
                     .align(Alignment.CenterHorizontally)
             ) {
                 TextField(
-                    value = "0000 0000 0000 0000",
-                    onValueChange = { },
+                    value = cardNumber.value,
+                    onValueChange = onValueChange,
                     label = {
                         Text(
                             text = stringResource(R.string.text_field_label)
@@ -96,6 +99,10 @@ fun HomeScreen() {
             ) {
                 BankInfoScreen()
             }
+            Spacer(
+                modifier = Modifier
+                    .fillMaxHeight()
+            )
             Text(
                 text = "Version 0.1.3",
                 fontSize = 16.sp,
