@@ -21,6 +21,7 @@ import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,7 +39,9 @@ import com.michaelsvaxe.ecosystem.ui.theme.BlueButton
 fun HomeScreen(
     cardNumber: State<String>,
     onValueChange: (String) -> Unit,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    cardInfo: MutableState<CardInfo>,
+    explainText: MutableState<String>
 ) {
     Box(
         modifier = Modifier
@@ -87,7 +90,7 @@ fun HomeScreen(
                 }
             }
             Text(
-                text = stringResource(R.string.bank_info_screen_explain),
+                text = explainText.value,
                 fontSize = 14.sp,
                 color = Color.Gray,
                 modifier = Modifier
@@ -99,14 +102,14 @@ fun HomeScreen(
                 modifier = Modifier
                     .padding(6.dp)
             ) {
-                BankInfoScreen()
+                BankInfoScreen(cardInfo)
             }
             Spacer(
                 modifier = Modifier
                     .fillMaxHeight()
             )
             Text(
-                text = "Version 0.2.1",
+                text = "Version 1.1.1",
                 fontSize = 16.sp,
                 color = Color.Gray,
                 modifier = Modifier
@@ -119,8 +122,7 @@ fun HomeScreen(
 
 
 @Composable
-fun BankInfoScreen() {
-    val cardInfo = CardInfo()
+fun BankInfoScreen(cardInfo: MutableState<CardInfo>) {
     Box(
         modifier = Modifier
             .padding(start = 6.dp, end = 6.dp, top = 6.dp, bottom = 20.dp)
@@ -144,7 +146,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = cardInfo.scheme.toString(),
+                        text = cardInfo.value.scheme.toString(),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -154,7 +156,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = cardInfo.type.toString(),
+                        text = cardInfo.value.type.toString(),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -171,7 +173,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = cardInfo.brand.toString(),
+                        text = cardInfo.value.brand.toString(),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -181,7 +183,11 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = if (cardInfo.prepaid == true) "Yes" else "No",
+                        text = when (cardInfo.value.prepaid) {
+                            true.toString() -> "YES"
+                            false.toString() -> "NO"
+                            else -> "no data"
+                        },
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -204,7 +210,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = "?",
+                        text = cardInfo.value.length.toString(),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -214,7 +220,11 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = if (cardInfo.luhn == true) "Yes" else "No",
+                        text = when (cardInfo.value.luhn) {
+                            false.toString() -> "NO"
+                            true.toString() -> "YES"
+                            else -> "no data"
+                        },
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -233,11 +243,38 @@ fun BankInfoScreen() {
             ) {
                 Column {
                     Text(
+                        text = stringResource(R.string.bank_name),
+                        fontWeight = FontWeight.Thin
+                    )
+                    Text(
+                        text = cardInfo.value.bankName.toString(),
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+                Column {
+                    Text(
+                        text = stringResource(R.string.bank_city),
+                        fontWeight = FontWeight.Thin
+                    )
+                    Text(
+                        text = cardInfo.value.bankCity.toString(),
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+            Row(
+                horizontalArrangement = Arrangement.SpaceAround,
+                modifier = Modifier
+                    .padding(bottom = 6.dp)
+                    .fillMaxWidth()
+            ) {
+                Column {
+                    Text(
                         text = stringResource(R.string.bank_website),
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = "?",
+                        text = cardInfo.value.bankWebsite.toString(),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -247,7 +284,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = "?",
+                        text = cardInfo.value.bankPhone.toString(),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -259,6 +296,14 @@ fun BankInfoScreen() {
                     .align(Alignment.CenterHorizontally)
             )
             Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Text(cardInfo.value.countryEmoji.toString())
+                Text(cardInfo.value.countryName.toString())
+            }
+            Row(
                 horizontalArrangement = Arrangement.SpaceAround,
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -269,7 +314,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = cardInfo.longitude.toString(),
+                        text = cardInfo.value.longitude.toString(),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -279,7 +324,7 @@ fun BankInfoScreen() {
                         fontWeight = FontWeight.Thin
                     )
                     Text(
-                        text = cardInfo.latitude.toString(),
+                        text = cardInfo.value.latitude.toString(),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -287,4 +332,3 @@ fun BankInfoScreen() {
         }
     }
 }
-

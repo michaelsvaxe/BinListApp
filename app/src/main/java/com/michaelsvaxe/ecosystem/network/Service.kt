@@ -8,6 +8,8 @@ class Service {
     private val retrofit = RetrofitClient.getClient()
     private val api = retrofit.create(Api::class.java)
 
+    val instance = CardInfo()
+
     fun successfulResponse(cardNumber: String) {
         val response = api.getData(cardNumber).execute()
 

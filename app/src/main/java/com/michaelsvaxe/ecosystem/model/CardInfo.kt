@@ -1,15 +1,19 @@
 package com.michaelsvaxe.ecosystem.model
 
 data class CardInfo(
-    var scheme: String? = "hello",
-    var type: String? = "hi",
-    var brand: String? = "hi",
-    var prepaid: Boolean? = false,
-    var length: Byte? = 21,
-    var luhn: Boolean? = false,
-    var countryName: String? = "null",
-    var countryEmoji: String? = "null",
-    var latitude: Byte? = -21,
-    var longitude: Byte? = 12,
-    var bankName: String? = "null"
+    var cardNumber: String? = "",
+    var scheme: String? = "",
+    var type: String? = "",
+    var brand: String? = "",
+    var prepaid: String? = "",
+    var length: String? = "",
+    var luhn: String? = "",
+    var countryName: String? = "",
+    var countryEmoji: String? = "",
+    var latitude: Byte? = 0,
+    var longitude: Byte? = 0,
+    var bankName: String? = "",
+    var bankCity: String? = "",
+    var bankWebsite: String? = "",
+    var bankPhone: String? = ""
 )

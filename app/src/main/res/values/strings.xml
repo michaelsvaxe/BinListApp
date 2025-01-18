@@ -6,6 +6,8 @@
     <string name="text_field_label">Card Number</string>
     <string name="btn_main">Lookup</string>
     <string name="fetching">Fetching…</string>
+    <string name="success">Success!</string>
+    <string name="too_many_requests">Exceeded the maximum number of requests per hour (5). Try again in 1 hour</string>
 
     <!-- Card Info -->
     <string name="scheme">SCHEME/NETWORK</string>
@@ -20,8 +22,11 @@
     <string name="bank">BANK</string>
     <string name="bank_website">Website</string>
     <string name="bank_phone">Phone</string>
+    <string name="bank_name">Name</string>
+    <string name="bank_city">City</string>
 
     <string name="country">COUNTRY</string>
+    <string name="country_name">Name</string>
     <string name="latitude">latitude</string>
     <string name="longitude">longitude</string>
 
