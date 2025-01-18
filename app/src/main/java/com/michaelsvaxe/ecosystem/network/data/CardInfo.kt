@@ -1,4 +1,4 @@
-package com.michaelsvaxe.ecosystem.model
+package com.michaelsvaxe.ecosystem.network.data
 
 data class CardInfo(
     var cardNumber: String? = "",

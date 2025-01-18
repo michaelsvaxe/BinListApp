@@ -9,6 +9,7 @@
     <string name="success">Success!</string>
     <string name="too_many_requests">Exceeded the maximum number of requests per hour (5). Try again in 1 hour</string>
 
+
     <!-- Card Info -->
     <string name="scheme">SCHEME/NETWORK</string>
     <string name="type">TYPE</string>
@@ -32,4 +33,5 @@
 
     <!-- History -->
     <string name="history">History</string>
+    <string name="delete_history">Delete history</string>
 </resources>

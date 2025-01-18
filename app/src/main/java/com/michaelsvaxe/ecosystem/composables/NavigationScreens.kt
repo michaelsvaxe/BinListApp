@@ -10,7 +10,7 @@ import com.michaelsvaxe.ecosystem.composables.tabs.AboutScreen
 import com.michaelsvaxe.ecosystem.composables.tabs.HistoryScreen
 import com.michaelsvaxe.ecosystem.navigation.NavItem
 import com.michaelsvaxe.ecosystem.composables.tabs.HomeScreen
-import com.michaelsvaxe.ecosystem.model.CardInfo
+import com.michaelsvaxe.ecosystem.network.data.CardInfo
 
 @Composable
 fun NavigationScreens(
@@ -20,11 +20,12 @@ fun NavigationScreens(
     onClick: () -> Unit,
     cardInfo: MutableState<CardInfo>,
     explainText: MutableState<String>,
-    historyList: MutableState<MutableList<CardInfo>>
+    historyList: MutableList<CardInfo>,
+    deleteHistory: () -> Unit
 ) {
     NavHost(navController, startDestination = NavItem.Home.path) {
         composable(NavItem.About.path) { AboutScreen() }
         composable(NavItem.Home.path) { HomeScreen(cardNumber, onValueChange, onClick, cardInfo, explainText) }
-        composable(NavItem.History.path) { HistoryScreen(historyList) }
+        composable(NavItem.History.path) { HistoryScreen(historyList, deleteHistory) }
     }
 }

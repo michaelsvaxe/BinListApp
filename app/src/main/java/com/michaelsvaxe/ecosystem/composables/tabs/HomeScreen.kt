@@ -27,12 +27,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.michaelsvaxe.ecosystem.R
-import com.michaelsvaxe.ecosystem.model.CardInfo
+import com.michaelsvaxe.ecosystem.network.data.CardInfo
 import com.michaelsvaxe.ecosystem.ui.theme.BlueButton
 
 @Composable
@@ -68,6 +69,7 @@ fun HomeScreen(
             ) {
                 TextField(
                     value = cardNumber.value,
+                    textStyle = TextStyle(fontSize = 20.sp),
                     onValueChange = onValueChange,
                     label = {
                         Text(
@@ -109,7 +111,7 @@ fun HomeScreen(
                     .fillMaxHeight()
             )
             Text(
-                text = "Version 1.1.1",
+                text = "Version 1.2.0",
                 fontSize = 16.sp,
                 color = Color.Gray,
                 modifier = Modifier
@@ -134,6 +136,13 @@ fun BankInfoScreen(cardInfo: MutableState<CardInfo>) {
                 .fillMaxSize()
                 .padding(6.dp)
         ) {
+            Text(
+                text = cardInfo.value.cardNumber.toString(),
+                textAlign = TextAlign.Center,
+                fontSize = 25.sp,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
             Row(
                 horizontalArrangement = Arrangement.SpaceAround,
                 modifier = Modifier

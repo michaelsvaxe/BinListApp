@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Card
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -16,20 +17,23 @@ import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.michaelsvaxe.ecosystem.composables.MainScreen
-import com.michaelsvaxe.ecosystem.model.CardInfo
+import com.michaelsvaxe.ecosystem.network.data.CardInfo
 import com.michaelsvaxe.ecosystem.ui.theme.EcoSystemTheme
+import io.paperdb.Paper
 import org.json.JSONObject
 
 class MainActivity : ComponentActivity() {
 
     private var cardInfoInstance = CardInfo()
 
-    val historyList = mutableStateOf(mutableListOf<CardInfo>())
+    private var historyList: MutableList<CardInfo>  = mutableListOf()
 
-    val cardNumberInput = mutableStateOf("0000 0000")
+    private val cardNumberInput = mutableStateOf("0000 0000")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Paper.init(this)
 
         setContent {
 
@@ -47,11 +51,17 @@ class MainActivity : ComponentActivity() {
                         { lookUp(cardNumberInput.value, this, cardInfo, explainText) },
                         cardInfo,
                         explainText,
-                        historyList
+                        historyList,
+                        { deleteHistory() }
                     )
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        historyList = Paper.book().read("history", mutableListOf())!!
     }
 
     private fun lookUp(
@@ -85,25 +95,32 @@ class MainActivity : ComponentActivity() {
 
         with(cardInfoInstance) {
             cardNumber = cardNumberInput.value
-            scheme = obj.getString("scheme").ifBlank { "no scheme" }
-            type = obj.getString("type").ifBlank { "no type" }
-            brand = obj.getString("brand").ifBlank { "no brand" }
-            prepaid = "" // Сервер не выдаёт данные
-            length = "" // Сервер не выдаёт данные
-            luhn = "" // Сервер не выдаёт данные
+            scheme = obj.getString("scheme")
+            type = obj.getString("type")
+            brand = obj.getString("brand")
+            prepaid = "no data" // Сервер не выдаёт данные по картам Сбера. Нужно обработать ошибку
+            length = "no data" // Сервер не выдаёт данные
+            luhn = "no data" // Сервер не выдаёт данные
             countryName = obj.getJSONObject("country").getString("name")
             countryEmoji = obj.getJSONObject("country").getString("emoji")
             latitude = obj.getJSONObject("country").getInt("latitude").toByte()
             longitude = obj.getJSONObject("country").getInt("longitude").toByte()
             bankName = obj.getJSONObject("bank").getString("name")
-            bankWebsite = "" // Сервер не выдаёт данные
-            bankPhone = "" // Сервер не выдаёт данные
+            bankWebsite = "no data" // Сервер не выдаёт данные
+            bankPhone = "no data" // Сервер не выдаёт данные
         }
         return cardInfo
     }
 
-    private fun saveToHistory(cardInfo: CardInfo) {
-        historyList.value.add(cardInfo)
+    private fun saveToHistory(info: CardInfo) {
+        historyList.add(info)
+        Paper.book().write("history", historyList)
+        Log.d("mine", "history: $historyList")
+    }
+
+    private fun deleteHistory() {
+        historyList.clear()
+        Paper.book().write("history", historyList)
         Log.d("mine", "history: $historyList")
     }
 }

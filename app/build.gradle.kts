@@ -12,8 +12,8 @@ android {
         applicationId = "com.michaelsvaxe.ecosystem"
         minSdk = 30
         targetSdk = 34
-        versionCode = 4
-        versionName = "1.1.1"
+        versionCode = 6
+        versionName = "1.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.picasso)
     implementation(libs.volley)
+
+    implementation(libs.paperdb)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

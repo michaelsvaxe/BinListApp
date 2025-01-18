@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.navigation.NavHostController
-import com.michaelsvaxe.ecosystem.model.CardInfo
+import com.michaelsvaxe.ecosystem.network.data.CardInfo
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -18,7 +18,8 @@ fun MainScreen(
     onClick: () -> Unit,
     cardInfo: MutableState<CardInfo>,
     explainText: MutableState<String>,
-    historyList: MutableState<MutableList<CardInfo>>
+    historyList: MutableList<CardInfo>,
+    deleteHistory: () -> Unit
 ) {
     Scaffold(
         bottomBar = {
@@ -34,7 +35,8 @@ fun MainScreen(
             onClick,
             cardInfo,
             explainText,
-            historyList
+            historyList,
+            deleteHistory
         )
     }
 }
